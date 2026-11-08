@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Header -->
+    <string name="app_name">SamTimer</string>
+    <string name="app_title">SamTimer</string>
+    <string name="app_subtitle">CVE-2026-98260 · Samsung Kernel LPE</string>
+
+    <!-- Root status -->
+    <string name="root_checking">Checking…</string>
+    <string name="root_rooted">Rooted</string>
+    <string name="root_not_rooted">Not rooted</string>
+    <string name="root_unknown">Cannot check</string>
+    <string name="root_rooted_detail">KernelSU module live — grant su in the manager app</string>
+    <string name="root_not_detail">Root is cleared on reboot</string>
+    <string name="root_unknown_detail">No permission — checked automatically once Shizuku connects</string>
+
+    <!-- Shizuku status -->
+    <string name="shizuku_checking">Checking…</string>
+    <string name="shizuku_connected">Connected</string>
+    <string name="shizuku_waiting">Waiting</string>
+    <string name="shizuku_dead">Disconnected</string>
+
+    <!-- Run button -->
+    <string name="run_root">Root now</string>
+    <string name="run_reroot">Re-root</string>
+    <string name="run_running">Running… (up to 7 min)</string>
+
+    <!-- Status line -->
+    <string name="status_permission_denied">Permission denied</string>
+    <string name="status_shizuku_dead">Shizuku disconnected — restart the Shizuku app</string>
+    <string name="status_shizuku_start">Please start Shizuku (wireless debugging)</string>
+    <string name="status_requesting">Requesting Shizuku permission…</string>
+    <string name="status_request_failed">Permission request failed</string>
+    <string name="status_running">Running exploit… (up to 7 min)</string>
+    <string name="status_root_ok">Root succeeded (KSU loaded)</string>
+    <string name="status_done_unverified">Done (KSU unverified)</string>
+    <string name="status_failed_fmt">Failed (exit=%1$d)</string>
+    <string name="status_error">Execution error</string>
+
+    <!-- Auto-root -->
+    <string name="auto_title">Auto-root after reboot</string>
+    <string name="auto_desc">Waits for Shizuku on boot, then runs automatically · disables itself on failure</string>
+
+    <!-- Log -->
+    <string name="log_label">LOG</string>
+    <string name="log_run_started">run started</string>
+    <string name="log_root_ok">ROOT OK — grant su in the manager app (cleared on reboot)</string>
+    <string name="log_unverified">exit 0 but KSU unverified — check the log</string>
+    <string name="log_failed">Failed — retry or check the log</string>
+    <string name="log_exit_fmt">---- exit=%1$d ksuLoaded=%2$b ----</string>
+    <string name="log_granted">Shizuku granted</string>
+    <string name="log_permission_denied">Shizuku permission denied</string>
+    <string name="log_auto_on">Auto-root enabled — runs automatically after reboot</string>
+    <string name="log_auto_off">Auto-root disabled</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_run_title">Start rooting</string>
+    <string name="dialog_rerun_title">Re-root</string>
+    <string name="dialog_run_msg">Run the CVE-2026-98260 timer exploit.\n\n• Takes about 1–7 minutes\n• If it fails, a reboot restores everything\n\nContinue?</string>
+    <string name="dialog_rerun_msg">The device is already rooted.\nRun the exploit again?\n\n(The load step is skipped when the module is already live.)</string>
+    <string name="dialog_confirm_run">Run</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_auto_title">Enable auto-root</string>
+    <string name="dialog_auto_msg">The rooting chain will run automatically after every reboot.\n\n• Shizuku must auto-start on boot (enable it in the Shizuku app)\n• Shizuku permission must already be granted\n• It may take a few minutes after boot\n• The option disables itself if an auto-run fails (boot-loop protection)\n\nEnable?</string>
+    <string name="dialog_auto_confirm">Enable</string>
+
+    <!-- Notifications (auto-root) -->
+    <string name="notif_channel">Auto-root</string>
+    <string name="notif_auto_started">Auto-root started</string>
+    <string name="notif_binding">Binding Shizuku UserService…</string>
+    <string name="notif_success">Auto-root succeeded ✓</string>
+    <string name="notif_success_text">KernelSU module loaded — grant su in the manager app</string>
+    <string name="notif_fail">Auto-root failed</string>
+    <string name="notif_skip">Auto-root skipped</string>
+    <string name="notif_skip_text">Shizuku did not start after boot — check the Shizuku app</string>
+    <string name="notif_already">Already rooted</string>
+    <string name="notif_already_text">The KernelSU module is already loaded</string>
+    <string name="notif_no_perm">No Shizuku permission — run the app manually once, then try again</string>
+    <string name="notif_timeout">Timed out (9 min)</string>
+    <string name="notif_bind_fail_fmt">UserService bind failed: %1$s</string>
+    <string name="notif_fail_exit_fmt">Auto-root failed (exit=%1$d)</string>
+    <string name="notif_disabled_hint">Auto-root has been disabled — retry manually in the app</string>
+</resources>

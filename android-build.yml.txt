@@ -1,0 +1,72 @@
+# .github/workflows/android-build.yml
+# Adapted from the very popular
+#  https://github.com/wasishah33/android-apk-builder
+
+name: Build SamTimer
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: android-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_TYPE: Release      # change to “Debug” if you only want the debug build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/*.md') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: Cache Android SDK
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/caches
+          key: sdk-${{ runner.os }}-API34
+          restore-keys: |
+            sdk-${{ runner.os }}-
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Build Release APK
+        if: env.BUILD_TYPE == 'Release'
+        run: ./gradlew assembleRelease   # add signing args only if you have a keystore
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: samtimer-debug
+          path: app/build/outputs/apk/debug/*.apk
+
+      - name: Upload Release APK
+        if: env.BUILD_TYPE == 'Release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: samtimer-release
+          path: app/build/outputs/apk/release/*.apk
